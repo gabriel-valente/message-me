@@ -1,17 +1,50 @@
-<h1>This is the root route</h1>
-<div class="ui labeled button" tabindex="0">
-  <div class="ui red button">
-    <i class="heart icon"></i> Like
+<style>
+  .chatbox {
+    height: 450px;
+  }
+</style>
+
+<h4 class="ui center aligned medium icon header">
+  <i class="circular coffee icon orange"></i>
+  Say something
+</h4>
+
+<div class="ui two column grid">
+  <div class="twelve wide column">
+    <div class="ui fluid raised card chatbox">
+      <div class="content">
+        <div class="ui feed">
+          <%= render @messages %>
+        </div>
+      </div>
+      <div class="extra content">
+        <%= form_for(@message, local: true, url: message_path, data: { turbo: false }, class: "ui reply form") do |f| %>
+          <div class="field">
+            <div class="ui fluid icon input">
+              <%= f.text_field :body, placeholder: "Enter a message..." %>
+
+              <%= f.button '<i class="bordered inverted orange edit icon"></i>'.html_safe %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
   </div>
-  <a class="ui basic red left pointing label">
-    1,048
-  </a>
-</div>
-<div class="ui labeled button" tabindex="0">
-  <div class="ui basic blue button">
-    <i class="fork icon"></i> Forks
+  <div class="four wide column">
+    <div class="ui fluid raised card chatbox">
+      <div class="content">
+        <div class="ui inverted vertical menu">
+          <a class="active item">
+            Home
+          </a>
+          <a class="item">
+            Messages
+          </a>
+          <a class="item">
+            Friends
+          </a>
+        </div>
+      </div>
+    </div>
   </div>
-  <a class="ui basic left pointing blue label">
-    1,048
-  </a>
 </div>
